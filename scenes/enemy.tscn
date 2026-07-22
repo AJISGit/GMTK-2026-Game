@@ -8,6 +8,9 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
+size = Vector2(130, 130)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=921402794]
 script = ExtResource("1_7p1mj")
 metadata/_custom_type_script = "uid://bob5jwsv6an5u"
@@ -18,3 +21,11 @@ texture = SubResource("PlaceholderTexture2D_md0e3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1938551118]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_4ra3w")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1863572872]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=774754908]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7p1mj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

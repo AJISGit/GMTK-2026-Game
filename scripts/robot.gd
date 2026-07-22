@@ -29,7 +29,6 @@ func _on_timer_timeout():
 	current_energy -= energy_timer.wait_time
 	if (current_energy < 0.0): current_energy = 0.0
 
-	print(current_energy)
 
 
 
@@ -63,5 +62,7 @@ func _physics_process(delta: float) -> void:
 
 	if (current_energy > 5.0):
 		current_energy = 5.0
+	elif (current_energy < 0.0):
+		current_energy = 0.0
 	
 
