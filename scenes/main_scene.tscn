@@ -188,12 +188,17 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="MainScene" type="Node2D" unique_id=1095713452]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1200336497]
-
 [node name="Player" parent="." unique_id=2028119880 instance=ExtResource("1_w2twt")]
 unique_name_in_owner = true
 
-[node name="EnergyIcon" type="AnimatedSprite2D" parent="." unique_id=1359483004]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1200336497]
+position = Vector2(10, 0)
+
+[node name="TheStuff" type="CanvasLayer" parent="Player/Camera2D" unique_id=1386341203]
+offset = Vector2(550, 300)
+transform = Transform2D(1, 0, 0, 1, 550, 300)
+
+[node name="EnergyIcon" type="AnimatedSprite2D" parent="Player/Camera2D/TheStuff" unique_id=1359483004]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(-3, -240)
 scale = Vector2(5, 5)
@@ -202,7 +207,7 @@ autoplay = "default"
 frame_progress = 0.53125197
 script = ExtResource("3_7ykc4")
 
-[node name="EnergyLabel" type="Label" parent="." unique_id=442729918]
+[node name="EnergyLabel" type="Label" parent="Player/Camera2D/TheStuff" unique_id=442729918]
 offset_left = 30.0
 offset_top = -265.0
 offset_right = 70.0
