@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://12dydfpocm3i" path="res://sprites/energy.png" id="2_pw63i"]
 [ext_resource type="Script" uid="uid://c81qpyrjggtug" path="res://scripts/energy_bar.gd" id="3_7ykc4"]
 [ext_resource type="FontFile" uid="uid://dw65sxfr2pq71" path="res://fonts/Pixeled.ttf" id="4_pu3yx"]
+[ext_resource type="PackedScene" uid="uid://dy63nc8klujsd" path="res://scenes/enemy.tscn" id="5_gubc5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ykc4"]
 atlas = ExtResource("2_pw63i")
@@ -214,3 +215,7 @@ offset_right = 70.0
 offset_bottom = -219.0
 text = "50"
 label_settings = SubResource("LabelSettings_gubc5")
+
+[node name="Enemy" parent="." unique_id=921402794 instance=ExtResource("5_gubc5")]
+position = Vector2(442, -204)
+walk_speed = 10.0

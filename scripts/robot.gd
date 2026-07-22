@@ -60,5 +60,8 @@ func _physics_process(delta: float) -> void:
 
 	if (alive):
 		move_and_slide()
+
+	if (current_energy > 5.0):
+		current_energy = 5.0
 	
 
