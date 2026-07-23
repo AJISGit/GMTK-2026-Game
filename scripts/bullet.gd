@@ -11,9 +11,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D):
 	if (body == $"../Player"):
-		print("My eggnog just turned into a pizza")
 		if (from_plr): return
-		print("But now it smells")
 		body.subtract_energy(damage)
 	else:
 		if (!(body as Enemy)): pass
