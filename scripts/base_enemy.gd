@@ -21,6 +21,8 @@ var alive: bool = true
 @export var energy: float = 5.0
 
 
+signal killed
+
 
 func _ready() -> void:
 	walk_speed *= 1000
@@ -28,10 +30,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	if (health < 0):
-		%Player.current_energy += energy
+		$"../Player".current_energy += energy
+		killed.emit()
 		queue_free()
 
-	look_at(%Player.position)
+	look_at($"../Player".position)
 
 	velocity = Vector2(1.0, 0.0).rotated(rotation) * walk_speed * delta
 	move_and_slide()
@@ -39,9 +42,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 
-	if (body == %Player):
+	if (body == $"../Player"):
 		body.subtract_energy(body_damage)
 		velocity = Vector2(1.0, 0.0).rotated(rotation) * 300
 		velocity = -velocity
 		move_and_slide()
-

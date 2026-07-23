@@ -30,6 +30,8 @@ func _on_timer_timeout():
 	if (current_energy <= 0.0):
 		alive = false
 		return
+	else:
+		alive = true
 
 	current_energy -= energy_timer.wait_time
 	if (current_energy < 0.0): current_energy = 0.0

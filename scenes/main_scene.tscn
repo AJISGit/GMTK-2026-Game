@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c81qpyrjggtug" path="res://scripts/energy_bar.gd" id="3_7ykc4"]
 [ext_resource type="FontFile" uid="uid://dw65sxfr2pq71" path="res://fonts/Pixeled.ttf" id="4_pu3yx"]
 [ext_resource type="PackedScene" uid="uid://dy63nc8klujsd" path="res://scenes/enemy.tscn" id="5_gubc5"]
+[ext_resource type="Script" uid="uid://bq6hchmj5tym7" path="res://scripts/enemy_spawner.gd" id="6_rt2n2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ykc4"]
 atlas = ExtResource("2_pw63i")
@@ -201,7 +202,7 @@ transform = Transform2D(1, 0, 0, 1, 550, 300)
 
 [node name="EnergyIcon" type="AnimatedSprite2D" parent="Player/Camera2D/TheStuff" unique_id=1359483004]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(-3, -240)
+position = Vector2(5, -240)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_k67gn")
 autoplay = "default"
@@ -209,21 +210,15 @@ frame_progress = 0.53125197
 script = ExtResource("3_7ykc4")
 
 [node name="EnergyLabel" type="Label" parent="Player/Camera2D/TheStuff" unique_id=442729918]
-offset_left = 30.0
-offset_top = -265.0
-offset_right = 70.0
-offset_bottom = -219.0
+offset_left = 40.0
+offset_top = -264.0
+offset_right = 80.0
+offset_bottom = -218.0
 text = "50"
 label_settings = SubResource("LabelSettings_gubc5")
 
-[node name="Enemy" parent="." unique_id=921402794 instance=ExtResource("5_gubc5")]
-position = Vector2(442, -204)
-walk_speed = 10.0
-
-[node name="Enemy2" parent="." unique_id=1571147883 instance=ExtResource("5_gubc5")]
-position = Vector2(-726, -401)
-walk_speed = 10.0
-
-[node name="Enemy3" parent="." unique_id=679403479 instance=ExtResource("5_gubc5")]
-position = Vector2(-674, 714)
-walk_speed = 10.0
+[node name="EnemySpawner" type="Node" parent="." unique_id=938230244]
+script = ExtResource("6_rt2n2")
+enemy_resource = ExtResource("5_gubc5")
+enemy_count = 4
+metadata/_custom_type_script = "uid://bq6hchmj5tym7"

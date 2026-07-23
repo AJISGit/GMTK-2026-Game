@@ -13,6 +13,8 @@ size = Vector2(130, 130)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=921402794]
 script = ExtResource("1_7p1mj")
+max_health = 3
+energy = 1.0
 metadata/_custom_type_script = "uid://bob5jwsv6an5u"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1086449687]
