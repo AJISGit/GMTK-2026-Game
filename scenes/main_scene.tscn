@@ -219,3 +219,11 @@ label_settings = SubResource("LabelSettings_gubc5")
 [node name="Enemy" parent="." unique_id=921402794 instance=ExtResource("5_gubc5")]
 position = Vector2(442, -204)
 walk_speed = 10.0
+
+[node name="Enemy2" parent="." unique_id=1571147883 instance=ExtResource("5_gubc5")]
+position = Vector2(-726, -401)
+walk_speed = 10.0
+
+[node name="Enemy3" parent="." unique_id=679403479 instance=ExtResource("5_gubc5")]
+position = Vector2(-674, 714)
+walk_speed = 10.0

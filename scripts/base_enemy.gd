@@ -27,6 +27,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
+	if (health < 0):
+		%Player.current_energy += energy
+		queue_free()
+
 	look_at(%Player.position)
 
 	velocity = Vector2(1.0, 0.0).rotated(rotation) * walk_speed * delta
