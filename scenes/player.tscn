@@ -1,25 +1,76 @@
 [gd_scene format=3 uid="uid://ejiowo0bn0y3"]
 
 [ext_resource type="Script" uid="uid://venxp0av7n45" path="res://scripts/robot.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://c0fypl2j6jud7" path="res://icon.svg" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://clgpufim1v1x1" path="res://sprites/player.png" id="2_g2els"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("2_g2els")
+region = Rect2(9, 0, 8, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("2_g2els")
+region = Rect2(0, 0, 8, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-atlas = ExtResource("2_qhqgy")
-region = Rect2(0, 0, 128, 128)
+atlas = ExtResource("2_g2els")
+region = Rect2(36, 0, 8, 14)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qlg0r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_g2els")
+region = Rect2(45, 0, 8, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("2_g2els")
+region = Rect2(18, 0, 8, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("2_g2els")
+region = Rect2(27, 0, 8, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dqkch")
+"texture": SubResource("AtlasTexture_g2els")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}],
+"loop": true,
+"name": &"walk_front",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
-size = Vector2(127, 132)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlg0r"]
+radius = 3.5
+height = 12.0
 
 [node name="Player" type="CharacterBody2D" unique_id=2028119880 node_paths=PackedStringArray("sprite", "energy_timer")]
 script = ExtResource("1_g2els")
@@ -28,11 +79,14 @@ energy_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://venxp0av7n45"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=143727711]
-sprite_frames = SubResource("SpriteFrames_qlg0r")
+sprite_frames = SubResource("SpriteFrames_dqkch")
+animation = &"walk_back"
+autoplay = "idle_front"
+frame_progress = 0.44886872
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1343149269]
-position = Vector2(0.5, 1)
-shape = SubResource("RectangleShape2D_tuyoq")
+position = Vector2(-0.5, 0)
+shape = SubResource("CapsuleShape2D_qlg0r")
 
 [node name="Timer" type="Timer" parent="." unique_id=2046133336]
 wait_time = 0.00999999999999999
