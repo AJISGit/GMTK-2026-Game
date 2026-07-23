@@ -66,3 +66,8 @@ func _physics_process(delta: float) -> void:
 		current_energy = 0.0
 	
 
+func subtract_energy(amount: float) -> void:
+	if (!$IFrameTimer.is_stopped()): return
+	current_energy -= amount
+	$IFrameTimer.start()
+

@@ -36,4 +36,8 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 
 	if (body == %Player):
-		body.current_energy -= body_damage
+		body.subtract_energy(body_damage)
+		velocity = Vector2(1.0, 0.0).rotated(rotation) * 300
+		velocity = -velocity
+		move_and_slide()
+

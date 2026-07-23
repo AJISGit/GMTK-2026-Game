@@ -35,7 +35,11 @@ position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_tuyoq")
 
 [node name="Timer" type="Timer" parent="." unique_id=2046133336]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 autostart = true
+
+[node name="IFrameTimer" type="Timer" parent="." unique_id=403864260]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
