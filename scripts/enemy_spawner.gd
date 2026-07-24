@@ -29,8 +29,6 @@ func spawn_enemies(nodes: int, distance: float) -> void:
 	var max_distance: float = distance
 	var radius: float = max_distance
 
-	print("Plr: " + str($"../Player".position))
-
 	for i in nodesDesired:
 
 		var pos := Vector2(cos(i * a) * radius, sin(i * a) * radius)
@@ -45,17 +43,4 @@ func spawn_enemies(nodes: int, distance: float) -> void:
 			enemy.position += enemy.position.rotated(enemy.rotation_degrees) * (max_distance - enemy_distance)
 
 
-		print(enemy.position)
-
-	enemies_left = nodesDesired
-
-
-
-func _ready() -> void:
-	spawn_enemies.call_deferred(enemy_count, enemy_distance)
-
-func _process(_delta: float) -> void:
-
-	if (enemies_left <= 0):
-		print("Time to spawn more guys!")
 		spawn_enemies(enemy_count, enemy_distance)

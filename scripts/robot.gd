@@ -21,6 +21,12 @@ var can_shoot: bool = true
 const BULLET_RESOURCE = preload("res://scenes/bullet.tscn")
 
 
+enum facing_side { FRONT, BACK, LEFT, RIGHT }
+var side: facing_side
+var last_walking: bool = false
+
+
+
 func _ready() -> void:
 	walk_speed *= 1000
 
@@ -45,24 +51,41 @@ func _physics_process(delta: float) -> void:
 
 	var x_pressed: bool = false
 	var y_pressed: bool = false	
+	var old_side: facing_side = side
+	var walking: bool = false
 
 	if ($ShootTimer.is_stopped()):
 		$ShootTimer.start()
 		can_shoot = true
 
 
-	if (Input.is_action_pressed("move_up")):
-		velocity.y = -walk_speed * delta
-		y_pressed = true
+
+
 	if (Input.is_action_pressed("move_left")):
 		velocity.x = -walk_speed * delta
 		x_pressed = true
-	if (Input.is_action_pressed("move_down")):
-		velocity.y = walk_speed * delta
-		y_pressed = true
+		side = facing_side.LEFT
+		walking = true
+
 	if (Input.is_action_pressed("move_right")):
 		velocity.x = walk_speed * delta
 		x_pressed = true
+		side = facing_side.RIGHT
+		walking = true
+
+	if (Input.is_action_pressed("move_up")):
+		velocity.y = -walk_speed * delta
+		y_pressed = true
+		side = facing_side.FRONT
+		walking = true
+
+	if (Input.is_action_pressed("move_down")):
+		velocity.y = walk_speed * delta
+		y_pressed = true
+		side = facing_side.BACK
+		walking = true
+
+
 	if (Input.is_action_pressed("shoot")):
 
 		if (can_shoot):
@@ -87,6 +110,53 @@ func _physics_process(delta: float) -> void:
 		current_energy = 5.0
 	elif (current_energy < 0.0):
 		current_energy = 0.0
+
+	
+	if ((old_side != side) || (last_walking != walking)):
+
+
+		if (side == facing_side.LEFT):
+			if (walking == true):
+				sprite.play("walk_front")
+			else:
+				sprite.play("idle_front")
+
+			sprite.flip_h = true
+
+		elif (side == facing_side.RIGHT):
+			if (walking == true):
+				sprite.play("walk_front")
+			else:
+				sprite.play("idle_front")
+
+			sprite.flip_h = false
+
+		elif (side == facing_side.FRONT):
+			if (walking == true):
+				sprite.play("walk_back")
+			else:
+				sprite.play("idle_back")
+
+			sprite.flip_h = false
+
+		elif (side == facing_side.BACK):
+			if (walking == true):
+				sprite.play("walk_front")
+			else:
+				sprite.play("idle_front")
+
+			sprite.flip_h = false
+
+
+	last_walking = walking
+
+	if (current_energy <= 0.0):
+		sprite.play("no_energy")
+
+
+
+
+	
 	
 
 func subtract_energy(amount: float) -> void:

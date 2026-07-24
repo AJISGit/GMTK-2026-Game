@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://venxp0av7n45" path="res://scripts/robot.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://clgpufim1v1x1" path="res://sprites/player.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://db05ytpytbwk8" path="res://sprites/shadow.png" id="2_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_g2els")
@@ -10,6 +11,10 @@ region = Rect2(9, 0, 8, 14)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
 region = Rect2(0, 0, 8, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("2_g2els")
+region = Rect2(54, 0, 8, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_g2els")
@@ -47,6 +52,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": true,
+"name": &"no_energy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dqkch")
 }, {
 "duration": 1.0,
@@ -78,14 +91,18 @@ sprite = NodePath("AnimatedSprite2D")
 energy_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://venxp0av7n45"
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1127996969]
+modulate = Color(0.019607844, 0.019607844, 0.019607844, 0.59607846)
+position = Vector2(0, 6.5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_qhqgy")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=143727711]
 sprite_frames = SubResource("SpriteFrames_dqkch")
-animation = &"walk_back"
+animation = &"no_energy"
 autoplay = "idle_front"
-frame_progress = 0.44886872
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1343149269]
-position = Vector2(-0.5, 0)
 shape = SubResource("CapsuleShape2D_qlg0r")
 
 [node name="Timer" type="Timer" parent="." unique_id=2046133336]
