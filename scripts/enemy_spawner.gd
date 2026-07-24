@@ -43,4 +43,15 @@ func spawn_enemies(nodes: int, distance: float) -> void:
 			enemy.position += enemy.position.rotated(enemy.rotation_degrees) * (max_distance - enemy_distance)
 
 
+	enemies_left = nodesDesired
+
+
+
+func _ready() -> void:
+	spawn_enemies.call_deferred(enemy_count, enemy_distance)
+
+func _process(_delta: float) -> void:
+
+	if (enemies_left <= 0):
 		spawn_enemies(enemy_count, enemy_distance)
+
